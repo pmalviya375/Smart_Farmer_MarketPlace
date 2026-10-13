@@ -1,0 +1,120 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Smart_Farmer_MarketPlace.Admin.Admin" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <title>AgriTech - Admin Enterprise Portal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="<%: ResolveUrl("~/Site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="dash-body">
+    <form id="form1" runat="server">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-flex">
+                    <div class="brand-logo-icon">
+                        <i class="fa-solid fa-tractor"></i>
+                    </div>
+                    <div>
+                        <h2>AgriTech Admin</h2>
+                        <span>Enterprise Portal</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="Dashboard.aspx" id="lnkDashboard">
+                        <i class="fa-solid fa-table-cells-large"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="FarmerManagement.aspx" id="lnkFarmers">
+                        <i class="fa-solid fa-tractor"></i> Manage Farmers
+                    </a>
+                </li>
+                <li>
+                    <a href="BuyerManagement.aspx" id="lnkBuyers">
+                        <i class="fa-solid fa-cart-shopping"></i> Manage Buyers
+                    </a>
+                </li>
+                <li>
+                    <a href="ContactManagement.aspx" id="lnkContacts">
+                        <i class="fa-regular fa-address-book"></i> Contact Management
+                    </a>
+                </li>
+                <li>
+                    <a href="Profile.aspx" id="lnkProfile">
+                        <i class="fa-regular fa-user"></i> Profile
+                    </a>
+                </li>
+                <li>
+                    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </asp:LinkButton>
+                </li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content">
+            <!-- TOPBAR -->
+            <div class="topbar">
+                <div class="topbar-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="search-box" placeholder="Search panel..." onkeydown="if(event.key==='Enter'){ return false; }" />
+                </div>
+                <div class="user-info">
+                    <a href="ContactManagement.aspx" class="notification-bell-btn" title="View Inquiries">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="bell-dot"></span>
+                    </a>
+                    <div class="user-name-role">
+                        <div class="user-name">
+                            <asp:Label ID="lblAdminName" runat="server" Text="Administrator" />
+                        </div>
+                        <div class="user-role-tag">Super Admin</div>
+                    </div>
+                    <div class="avatar" style="background:#1b6d34; color:#fff;">
+                        <asp:Label ID="lblAvatar" runat="server" Text="A" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTENT -->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        // Automatic active sidebar navigation highlighting
+        document.addEventListener("DOMContentLoaded", function () {
+            var path = window.location.pathname.split("/").pop().toLowerCase();
+            if (!path) path = "dashboard.aspx";
+
+            var menuLinks = document.querySelectorAll(".sidebar-menu a");
+            menuLinks.forEach(function (link) {
+                var href = link.getAttribute("href");
+                if (href) {
+                    var linkFile = href.split("/").pop().toLowerCase();
+                    if (linkFile === path ||
+                        (path.indexOf("farmer") !== -1 && linkFile.indexOf("farmer") !== -1) ||
+                        (path.indexOf("buyer") !== -1 && linkFile.indexOf("buyer") !== -1) ||
+                        (path.indexOf("contact") !== -1 && linkFile.indexOf("contact") !== -1) ||
+                        (path.indexOf("profile") !== -1 && linkFile.indexOf("profile") !== -1)) {
+                        link.classList.add("active");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
