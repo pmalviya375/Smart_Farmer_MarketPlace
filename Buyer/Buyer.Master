@@ -1,0 +1,124 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Buyer.master.cs" Inherits="Smart_Farmer_MarketPlace.Buyer.Buyer" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <title>AgriTech - Buyer Portal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="<%: ResolveUrl("~/Site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="dash-body">
+    <form id="form1" runat="server">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-flex">
+                    <div class="brand-logo-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div>
+                        <h2>AgriTech</h2>
+                        <span>Buyer Portal</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="Dashboard.aspx" id="lnkDashboard">
+                        <i class="fa-solid fa-grip"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Marketplace.aspx" id="lnkMarketplace">
+                        <i class="fa-solid fa-store"></i> Marketplace
+                    </a>
+                </li>
+                <li>
+                    <a href="OrderRequest.aspx" id="lnkOrderRequest">
+                        <i class="fa-solid fa-cart-plus"></i> Order Request
+                    </a>
+                </li>
+                <li>
+                    <a href="MyOrders.aspx" id="lnkOrders">
+                        <i class="fa-solid fa-file-lines"></i> My Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="ContactUs.aspx" id="lnkContact">
+                        <i class="fa-regular fa-comment-dots"></i> Contact Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="Profile.aspx" id="lnkProfile">
+                        <i class="fa-regular fa-user"></i> My Profile
+                    </a>
+                </li>
+                <li>
+                    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                    </asp:LinkButton>
+                </li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content">
+            <!-- TOPBAR -->
+            <div class="topbar">
+                <div class="topbar-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" class="search-box" placeholder="Search crops, machinery, livestock..." onkeydown="if(event.key==='Enter'){ window.location='Marketplace.aspx?search='+encodeURIComponent(this.value); return false; }" />
+                </div>
+                <div class="user-info">
+                    <a href="MyOrders.aspx" class="notification-bell-btn" title="View Orders & Notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="bell-dot"></span>
+                    </a>
+                    <div class="user-name-role">
+                        <div class="user-name">
+                            <asp:Label ID="lblBuyerName" runat="server" Text="Buyer" />
+                        </div>
+                        <div class="user-role-tag">Verified Buyer</div>
+                    </div>
+                    <div class="avatar">
+                        <asp:Label ID="lblAvatar" runat="server" Text="B" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTENT -->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        // Highlight active sidebar navigation based on current URL
+        document.addEventListener("DOMContentLoaded", function () {
+            var path = window.location.pathname.split("/").pop().toLowerCase();
+            if (!path) path = "dashboard.aspx";
+
+            var menuLinks = document.querySelectorAll(".sidebar-menu a");
+            menuLinks.forEach(function (link) {
+                var href = link.getAttribute("href");
+                if (href) {
+                    var linkFile = href.split("/").pop().toLowerCase();
+                    if (linkFile === path ||
+                        (path.indexOf("marketplace") !== -1 && linkFile.indexOf("marketplace") !== -1) ||
+                        (path.indexOf("orderrequest") !== -1 && linkFile.indexOf("orderrequest") !== -1) ||
+                        (path.indexOf("myorders") !== -1 && linkFile.indexOf("myorders") !== -1)) {
+                        link.classList.add("active");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
