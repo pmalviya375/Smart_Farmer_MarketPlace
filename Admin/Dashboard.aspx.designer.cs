@@ -22,6 +22,16 @@ namespace Smart_Farmer_MarketPlace.Admin
         protected global::System.Web.UI.WebControls.Label lblTotalBuyers;
 
         /// <summary>
+        /// lblTotalListings control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Label lblTotalListings;
+
+        /// <summary>
+        /// lblTotalOrders control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.Label lblTotalOrders;
+
+        /// <summary>
         /// lblPendingQueries control.
         /// </summary>
         protected global::System.Web.UI.WebControls.Label lblPendingQueries;

@@ -93,6 +93,9 @@
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\FarmerManagement.aspx" />
     <Content Include="Admin\BuyerManagement.aspx" />
+    <Content Include="Admin\ProductManagement.aspx" />
+    <Content Include="Admin\CategoryManagement.aspx" />
+    <Content Include="Admin\OrderManagement.aspx" />
     <Content Include="Admin\ContactManagement.aspx" />
     <Content Include="Admin\Profile.aspx" />
     <Content Include="Default.aspx" />
@@ -274,6 +277,27 @@
     </Compile>
     <Compile Include="Admin\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProductManagement.aspx.cs">
+      <DependentUpon>ProductManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProductManagement.aspx.designer.cs">
+      <DependentUpon>ProductManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CategoryManagement.aspx.cs">
+      <DependentUpon>CategoryManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CategoryManagement.aspx.designer.cs">
+      <DependentUpon>CategoryManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\OrderManagement.aspx.cs">
+      <DependentUpon>OrderManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\OrderManagement.aspx.designer.cs">
+      <DependentUpon>OrderManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

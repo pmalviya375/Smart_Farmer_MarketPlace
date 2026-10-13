@@ -46,7 +46,21 @@ namespace Smart_Farmer_MarketPlace.Admin
                     lblTotalBuyers.Text = buyers.ToString("N0");
                 }
 
-                // 3. Pending Contact Queries
+                // 3. Total Listings
+                using (SqlCommand cmd = new SqlCommand("SELECT (SELECT COUNT(*) FROM Crop) + (SELECT COUNT(*) FROM Equipment) + (SELECT COUNT(*) FROM Animal)", con))
+                {
+                    int listings = Convert.ToInt32(cmd.ExecuteScalar());
+                    lblTotalListings.Text = listings.ToString("N0");
+                }
+
+                // 4. Total Orders
+                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Orders", con))
+                {
+                    int orders = Convert.ToInt32(cmd.ExecuteScalar());
+                    lblTotalOrders.Text = orders.ToString("N0");
+                }
+
+                // 5. Pending Contact Queries
                 using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ContactQueries WHERE Status = 'Pending'", con))
                 {
                     int pending = Convert.ToInt32(cmd.ExecuteScalar());

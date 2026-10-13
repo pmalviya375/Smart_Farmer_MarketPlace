@@ -47,8 +47,23 @@
                     </a>
                 </li>
                 <li>
+                    <a href="ProductManagement.aspx" id="lnkProducts">
+                        <i class="fa-solid fa-boxes-stacked"></i> Manage Products
+                    </a>
+                </li>
+                <li>
+                    <a href="CategoryManagement.aspx" id="lnkCategories">
+                        <i class="fa-solid fa-tags"></i> Manage Categories
+                    </a>
+                </li>
+                <li>
+                    <a href="OrderManagement.aspx" id="lnkOrders">
+                        <i class="fa-solid fa-receipt"></i> Manage Orders
+                    </a>
+                </li>
+                <li>
                     <a href="ContactManagement.aspx" id="lnkContacts">
-                        <i class="fa-regular fa-address-book"></i> Contact Management
+                        <i class="fa-regular fa-address-book"></i> Inquiries & Support
                     </a>
                 </li>
                 <li>
@@ -108,6 +123,9 @@
                     if (linkFile === path ||
                         (path.indexOf("farmer") !== -1 && linkFile.indexOf("farmer") !== -1) ||
                         (path.indexOf("buyer") !== -1 && linkFile.indexOf("buyer") !== -1) ||
+                        (path.indexOf("product") !== -1 && linkFile.indexOf("product") !== -1) ||
+                        (path.indexOf("category") !== -1 && linkFile.indexOf("category") !== -1) ||
+                        (path.indexOf("order") !== -1 && linkFile.indexOf("order") !== -1) ||
                         (path.indexOf("contact") !== -1 && linkFile.indexOf("contact") !== -1) ||
                         (path.indexOf("profile") !== -1 && linkFile.indexOf("profile") !== -1)) {
                         link.classList.add("active");

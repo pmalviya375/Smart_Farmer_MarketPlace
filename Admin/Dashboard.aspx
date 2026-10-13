@@ -40,7 +40,33 @@
             </div>
         </a>
 
-        <!-- Card 3: Pending Contact Queries -->
+        <!-- Card 3: Total Marketplace Listings -->
+        <a href="ProductManagement.aspx" class="admin-metric-card" style="text-decoration:none;">
+            <div class="admin-metric-icon" style="background:#ecfdf5; color:#059669;">
+                <i class="fa-solid fa-boxes-stacked"></i>
+            </div>
+            <div>
+                <div class="admin-metric-lbl">Total Listings</div>
+                <div class="admin-metric-val">
+                    <asp:Label ID="lblTotalListings" runat="server" Text="0" />
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 4: Total Orders -->
+        <a href="OrderManagement.aspx" class="admin-metric-card" style="text-decoration:none;">
+            <div class="admin-metric-icon" style="background:#eef2ff; color:#4f46e5;">
+                <i class="fa-solid fa-receipt"></i>
+            </div>
+            <div>
+                <div class="admin-metric-lbl">Total Orders</div>
+                <div class="admin-metric-val">
+                    <asp:Label ID="lblTotalOrders" runat="server" Text="0" />
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 5: Pending Contact Queries -->
         <a href="ContactManagement.aspx" class="admin-metric-card" style="text-decoration:none;">
             <div class="admin-metric-icon icon-query">
                 <i class="fa-solid fa-circle-question"></i>
