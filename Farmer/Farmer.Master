@@ -1,0 +1,102 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Farmer.master.cs" Inherits="Smart_Farmer_MarketPlace.Farmer.Farmer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>AgriTech - Farmer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="<%: ResolveUrl("~/Site.css") %>" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" enctype="multipart/form-data">
+        <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-flex">
+                <div class="brand-logo-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div>
+                    <h2>AgriTech</h2>
+                    <span>Farmer Portal</span>
+                </div>
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="Dashboard.aspx" runat="server" id="lnkDashboard">
+                <i class="fa-solid fa-grip"></i> Dashboard</a></li>
+            <li><a href="Marketplace.aspx"><i class="fa-solid fa-store"></i> Marketplace</a></li>
+            <li><a href="CropManagement.aspx"><i class="fa-solid fa-seedling"></i> Crop Management</a></li>
+            <li><a href="EquipmentManagement.aspx"><i class="fa-solid fa-tractor"></i> Equipment Management</a></li>
+            <li><a href="AnimalManagement.aspx"><i class="fa-solid fa-paw"></i> Animal Management</a></li>
+            <li><a href="OrderRequest.aspx"><i class="fa-solid fa-file-lines"></i> Order Request</a></li>
+            <li><a href="CategoryManagement.aspx"><i class="fa-solid fa-tags"></i> Categories</a></li>
+            <li><a href="ContactUs.aspx"><i class="fa-regular fa-comment-dots"></i> Contact Admin</a></li>
+            <li><a href="Profile.aspx"><i class="fa-regular fa-user"></i> My Profile</a></li>
+            <li><asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </asp:LinkButton></li>
+        </ul>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-content">
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="topbar-search-wrap">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-box" placeholder="Search crops, machinery, orders..." />
+            </div>
+            <div class="user-info">
+                <a href="OrderRequest.aspx" class="notification-bell-btn" title="View Order Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="bell-dot"></span>
+                </a>
+                <div class="user-name-role">
+                    <div class="user-name">
+                        <asp:Label ID="lblTopName" runat="server" Text="Farmer" />
+                    </div>
+                    <div class="user-role-tag">Verified Farmer</div>
+                </div>
+                <div class="avatar">
+                    <asp:Label ID="lblAvatar" runat="server" Text="F" />
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE CONTENT -->
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+
+    </form>
+
+    <script type="text/javascript">
+        // Highlight active sidebar navigation based on current URL
+        document.addEventListener("DOMContentLoaded", function () {
+            var path = window.location.pathname.split("/").pop().toLowerCase();
+            if (!path) path = "dashboard.aspx";
+
+            var menuLinks = document.querySelectorAll(".sidebar-menu a");
+            menuLinks.forEach(function (link) {
+                var href = link.getAttribute("href");
+                if (href) {
+                    var linkFile = href.split("/").pop().toLowerCase();
+                    if (linkFile === path ||
+                       (path.indexOf("crop") !== -1 && linkFile.indexOf("crop") !== -1) ||
+                       (path.indexOf("equipment") !== -1 && linkFile.indexOf("equipment") !== -1) ||
+                       (path.indexOf("animal") !== -1 && linkFile.indexOf("animal") !== -1) ||
+                       (path.indexOf("order") !== -1 && linkFile.indexOf("order") !== -1)) {
+                        link.classList.add("active");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
